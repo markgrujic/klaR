@@ -227,7 +227,7 @@ drawparti <- function(grouping, x, y, method = "lda", prec = 100,
     else 
         do.call("plot", c(list(x, y, pch = gs, col = color, main = NULL, xlab = xlab, ylab = ylab), plot.control))
     if((method=="lda") || (method=="qda")) 
-        points(z$means, pch = pch.mean, cex = cex.mean, col = col.mean, pch = pch.mean)
+        points(z$means, pch = pch.mean, cex = cex.mean, col = col.mean)
     
     # For each class calculate the difference between prob. and max(prob) for other class,
     # so, the obs is assigned to class iff diff>0
