@@ -150,7 +150,8 @@ partimat.data.frame<-function (x, ...)
 }
 
 drawparti <- function(grouping, x, y, method = "lda", prec = 100, 
-    xlab=NULL, ylab=NULL, col.correct = "black", col.wrong = "red", 
+    xlab=NULL, ylab=NULL, col.correct = "black", col.wrong = "red",
+    pch.correct = 0.5, pch.wrong = 0.5, pch.mean = 0.5,
     col.mean = "black", col.contour = "darkgrey", gs = as.character(grouping), 
     pch.mean = 19, cex.mean = 1.3, print.err = 0.7, legend.err = FALSE,
     legend.bg = "white", imageplot = TRUE, image.colors = cm.colors(nc), 
@@ -212,6 +213,7 @@ drawparti <- function(grouping, x, y, method = "lda", prec = 100,
     colorw <- grouping != khead
     err <- round(mean(colorw), 3)
     color <- ifelse(colorw, col.wrong, col.correct)
+    pch <- ifelse(colorw, pch.wrong, pch.correct)
     if(is.character(gs) || is.factor(gs)) gs <- substr(gs, 1, 1)
 
     nc <- ncol(temp)
@@ -219,13 +221,13 @@ drawparti <- function(grouping, x, y, method = "lda", prec = 100,
         do.call("image", c(list(xg, yg, matrix(apply(temp, 1, which.max), ncol = prec), 
             main = NULL, col = image.colors, breaks = (0:nc) + .5, 
             xlab = xlab, ylab = ylab), plot.control))
-        do.call("points", c(list(x, y, pch = gs, col = color), plot.control))
+        do.call("points", c(list(x, y, pch = gs, col = color, pch = pch), plot.control))
         box()
     }
     else 
         do.call("plot", c(list(x, y, pch = gs, col = color, main = NULL, xlab = xlab, ylab = ylab), plot.control))
     if((method=="lda") || (method=="qda")) 
-        points(z$means, pch = pch.mean, cex = cex.mean, col = col.mean)
+        points(z$means, pch = pch.mean, cex = cex.mean, col = col.mean, pch = pch.mean)
     
     # For each class calculate the difference between prob. and max(prob) for other class,
     # so, the obs is assigned to class iff diff>0
