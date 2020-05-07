@@ -213,7 +213,7 @@ drawparti <- function(grouping, x, y, method = "lda", prec = 100,
     colorw <- grouping != khead
     err <- round(mean(colorw), 3)
     color <- ifelse(colorw, col.wrong, col.correct)
-    cex <- ifelse(colorw, cex.wrong, cex.correct)
+    cex.plt <- ifelse(colorw, cex.wrong, cex.correct)
     if(is.character(gs) || is.factor(gs)) gs <- substr(gs, 1, 1)
 
     nc <- ncol(temp)
@@ -221,7 +221,7 @@ drawparti <- function(grouping, x, y, method = "lda", prec = 100,
         do.call("image", c(list(xg, yg, matrix(apply(temp, 1, which.max), ncol = prec), 
             main = NULL, col = image.colors, breaks = (0:nc) + .5, 
             xlab = xlab, ylab = ylab), plot.control))
-        do.call("points", c(list(x, y, pch = gs, col = color, cex = cex), plot.control))
+        do.call("points", c(list(x, y, pch = gs, col = color, cex = cex.plt), plot.control))
         box()
     }
     else 
