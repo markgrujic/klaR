@@ -151,7 +151,7 @@ partimat.data.frame<-function (x, ...)
 
 drawparti <- function(grouping, x, y, method = "lda", prec = 100, 
     xlab=NULL, ylab=NULL, col.correct = "black", col.wrong = "red",
-    pch.correct = 0.5, pch.wrong = 0.5, pch.mean = 0.5,
+    pch.correct = 0.5, pch.wrong = 0.5,
     col.mean = "black", col.contour = "darkgrey", gs = as.character(grouping), 
     pch.mean = 19, cex.mean = 1.3, print.err = 0.7, legend.err = FALSE,
     legend.bg = "white", imageplot = TRUE, image.colors = cm.colors(nc), 
